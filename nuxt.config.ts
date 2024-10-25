@@ -1,14 +1,25 @@
-import { serviceLayerConfig } from "./services.config"
+import path from "path"
+const serviceLayerConfig = require(path.join(process.cwd(), "services.config.ts"))
 
-const firestoreDbLayer: [string, { install: boolean }] = ["../firebase-base", { install: true }]
+const firestoreDbLayer: [string, { install: boolean }] = [
+	"github:codywakeford/firebase-connection-layer#master",
+	{ install: true },
+]
 const mongoDbLayer: [string, { install: boolean }] = ["../mongo-base", { install: true }]
-const postgresDbLayer: [string, { install: boolean }] = ["../postgres-db-layer", { install: true }]
-const sqliteDbLayer: [string, { install: boolean }] = ["../sqlite-db-layer", { install: true }]
 
-// Choose a nuxt layer to use. This is done to ensure appropriate code splitting.
+const postgresDbLayer: [string, { install: boolean }] = [
+	"github:codywakeford/postgres-connection-layer#master",
+	{ install: true },
+]
+const sqliteDbLayer: [string, { install: boolean }] = [
+	"github:codywakeford/sqlite-connection-layer#master",
+	{ install: true },
+]
+
+// Choose a nuxt layer to use.
+// This is done to ensure appropriate code splitting
+// with no uneeded deps
 function getDbLayer() {
-	console.debug("[database-layer] Database Selected: ", serviceLayerConfig.database)
-
 	switch (serviceLayerConfig.database) {
 		case "firestore":
 			return firestoreDbLayer
