@@ -9,11 +9,13 @@ try {
 }
 
 const firestoreDbLayer: [string, { install: boolean }] = [
-	"github:nuxt-service-layers/firebase#master",
+	// "github:nuxt-service-layers/firebase#master",
+	"../firebase",
 	{ install: true },
 ]
 const mongoDbLayer: [string, { install: boolean }] = [
-	"github:nuxt-service-layers/mongo#master",
+	// "github:nuxt-service-layers/mongo#master",
+	"../mongo",
 	{ install: true },
 ]
 
@@ -42,6 +44,16 @@ function getDbLayer() {
 
 		case "sqlite":
 			return sqliteDbLayer
+
+		case undefined:
+			console.warn(
+				"[database-connection] An error occured when trying to access services.config.ts database option.",
+			)
+			break
+
+		default:
+			console.warn("[database-connection] An unsupported database type was provided.")
+			break
 	}
 }
 
