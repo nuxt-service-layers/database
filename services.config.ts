@@ -1,5 +1,7 @@
+// NOTE: Restart the dev server after changing these options //
+
 const servicesConfig: ServiceLayerConfig = {
-	database: "firestore",
+	database: "postgres",
 }
 
 export default servicesConfig
