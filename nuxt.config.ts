@@ -42,8 +42,6 @@ function getDbLayer() {
 
 		case "sqlite":
 			return sqliteDbLayer
-		default:
-			throw new Error(`Unsupported database type: ${serviceLayerConfig.database}`)
 	}
 }
 
