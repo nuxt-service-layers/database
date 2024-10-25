@@ -1,6 +1,6 @@
 import path from "path"
 
-let serviceLayerConfig
+let serviceLayerConfig: ServiceLayerConfig
 
 try {
 	serviceLayerConfig = require(path.join(process.cwd(), "services.config.ts"))
