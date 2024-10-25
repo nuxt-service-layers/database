@@ -1,5 +1,12 @@
 import path from "path"
-const serviceLayerConfig = require(path.join(process.cwd(), "services.config.ts"))
+
+let serviceLayerConfig
+
+try {
+	serviceLayerConfig = require(path.join(process.cwd(), "services.config.ts"))
+} catch (error) {
+	serviceLayerConfig = ""
+}
 
 const firestoreDbLayer: [string, { install: boolean }] = [
 	"github:nuxt-service-layers/firebase#master",
