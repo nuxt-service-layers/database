@@ -1,11 +1,11 @@
 import path from "path"
-
+import type ServiceConfig from "../base/types/serviceConfig"
 let serviceLayerConfig: ServiceConfig
 
 try {
 	serviceLayerConfig = require(path.join(process.cwd(), "services.config.ts"))
 } catch (error) {
-	serviceLayerConfig = ""
+	serviceLayerConfig = {} as ServiceConfig
 }
 
 const firestoreDbLayer: [string, { install: boolean }] = [
